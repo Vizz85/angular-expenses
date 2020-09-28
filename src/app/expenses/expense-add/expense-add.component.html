@@ -1,15 +1,18 @@
-<mat-form-field>
-  <mat-label>Description</mat-label>
-  <input matInput placeholder="enter a description" [(ngModel)]="enteredDescription">
-</mat-form-field>
+<mat-card>
 
-<mat-form-field>
-  <mat-label>Amount</mat-label>
-  <input matInput placeholder="enter an amount" [(ngModel)]="enteredAmount">
-</mat-form-field>
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput placeholder="enter a description" [(ngModel)]="enteredDescription">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Amount</mat-label>
+      <input matInput placeholder="enter an amount" [(ngModel)]="enteredAmount">
+    </mat-form-field>
+  </mat-card-content>
 
-<button (click)="onAddExpense()">Add expense</button>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="onAddExpense()">Add expense</button>
+  </mat-card-actions>
 
-{{enteredDescription}}
-<br>
-{{enteredAmount}}
+</mat-card>
