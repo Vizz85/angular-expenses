@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 
-export interface Transaction {
-  item: string;
-  cost: number;
-}
+import { Expense } from '../expense.model';
+import { ExpensesService } from '../expenses.service';
 
 @Component({
   selector: 'app-expenses-list',
@@ -12,21 +11,15 @@ export interface Transaction {
 })
 export class ExpensesListComponent implements OnInit {
   displayedColumns: string[] = ['item', 'cost'];
-  transactions: Transaction[] = [
-    {item: 'Beach ball', cost: 4},
-    {item: 'Towel', cost: 5},
-    {item: 'Frisbee', cost: 2},
-    {item: 'Sunscreen', cost: 4},
-    {item: 'Cooler', cost: 25},
-    {item: 'Swim suit', cost: 15},
-  ];
+  @Input() expenses: Expense[] = [];
+  dataSource = new MatTableDataSource<Expense>(this.expenses);
 
-  /** Gets the total cost of all transactions. */
+  /** Gets the total cost of all expenses. */
   getTotalCost() {
-    return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+    return this.expenses.map(t => t.cost).reduce((acc, value) => acc + value, 0);
   }
 
-  constructor() { }
+  constructor(public expensesService: ExpensesService) { }
 
   ngOnInit(): void {
   }

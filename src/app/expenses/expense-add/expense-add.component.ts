@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Expense } from '../expense.model';
 
 @Component({
   selector: 'app-expense-add',
@@ -8,14 +10,22 @@ import { Component, OnInit } from '@angular/core';
 export class ExpenseAddComponent implements OnInit {
   enteredDescription: string = '';
   enteredAmount: string = '';
+  @Output() expenseCreated = new EventEmitter<Expense>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onAddExpense() {
-    console.log('new expense');
+  onAddExpense(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+    const newExpense: Expense = {
+      description: form.value.description,
+      cost: Number(form.value.amount)
+    };
+    this.expenseCreated.emit(newExpense);
   }
 
 }

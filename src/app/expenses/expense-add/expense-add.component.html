@@ -1,18 +1,36 @@
 <mat-card>
+  <form (submit)="onAddExpense(addExpenseForm)" #addExpenseForm="ngForm">
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input
+          matInput
+          placeholder="enter a description"
+          name="description"
+          ngModel
+          required
+          #description="ngModel"
+        />
+        <mat-error *ngIf="description.invalid">Enter a description</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Amount</mat-label>
+        <input
+          matInput
+          placeholder="enter a cost"
+          name="cost"
+          ngModel
+          required
+          #cost="ngModel"
+        />
+        <mat-error *ngIf="cost.invalid">Enter a cost</mat-error>
+      </mat-form-field>
+    </mat-card-content>
 
-  <mat-card-content>
-    <mat-form-field>
-      <mat-label>Description</mat-label>
-      <input matInput placeholder="enter a description" [(ngModel)]="enteredDescription">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Amount</mat-label>
-      <input matInput placeholder="enter an amount" [(ngModel)]="enteredAmount">
-    </mat-form-field>
-  </mat-card-content>
-
-  <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="onAddExpense()">Add expense</button>
-  </mat-card-actions>
-
+    <mat-card-actions>
+      <button type="submit" mat-raised-button color="primary">
+        Add expense
+      </button>
+    </mat-card-actions>
+  </form>
 </mat-card>
