@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Expense } from './expenses/expense.model';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +6,5 @@ import { Expense } from './expenses/expense.model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  storedExpenses: Expense[] = [];
 
-  onExpenseCreated(expense: Expense) {
-    this.storedExpenses.push(expense);
-  }
 }

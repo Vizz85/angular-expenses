@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
 
 import { Expense } from '../expense.model';
 import { ExpensesService } from '../expenses.service';
@@ -9,10 +10,12 @@ import { ExpensesService } from '../expenses.service';
   templateUrl: './expenses-list.component.html',
   styleUrls: ['./expenses-list.component.scss']
 })
-export class ExpensesListComponent implements OnInit {
+export class ExpensesListComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['item', 'cost'];
-  @Input() expenses: Expense[] = [];
-  dataSource = new MatTableDataSource<Expense>(this.expenses);
+  expenses: Expense[] = [];
+  dataSource: MatTableDataSource<Expense>;
+
+  private expensesSub: Subscription;
 
   /** Gets the total cost of all expenses. */
   getTotalCost() {
@@ -22,6 +25,17 @@ export class ExpensesListComponent implements OnInit {
   constructor(public expensesService: ExpensesService) { }
 
   ngOnInit(): void {
+    this.expenses = this.expensesService.getExpenses();
+    this.expensesSub = this.expensesService.getExpensesUpdateListener()
+      .subscribe((expenses: Expense[]) => {
+        this.expenses = expenses;
+        this.dataSource = new MatTableDataSource<Expense>(this.expenses);
+      });
+
+  }
+
+  ngOnDestroy() {
+    this.expensesSub.unsubscribe();
   }
 
 }
