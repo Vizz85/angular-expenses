@@ -7,19 +7,22 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ExpenseAddComponent } from './expenses/expense-add/expense-add.component';
 import { HeaderComponent } from './header/header.component';
 import { ExpensesListComponent } from './expenses/expenses-list/expenses-list.component';
+import { ExpensesChartComponent } from './expenses/expenses-chart/expenses-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ExpenseAddComponent,
     HeaderComponent,
-    ExpensesListComponent
+    ExpensesListComponent,
+    ExpensesChartComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { ExpensesListComponent } from './expenses/expenses-list/expenses-list.co
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
-    MatTableModule
+    MatTableModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
