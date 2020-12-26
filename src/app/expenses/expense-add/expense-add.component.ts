@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ExpensesService } from '../expenses.service';
 
@@ -8,6 +8,7 @@ import { ExpensesService } from '../expenses.service';
   styleUrls: ['./expense-add.component.scss']
 })
 export class ExpenseAddComponent implements OnInit {
+  @ViewChild('descriptionRef') descriptionRef: ElementRef;
 
   constructor(public expensesService: ExpensesService) { }
 
@@ -19,6 +20,8 @@ export class ExpenseAddComponent implements OnInit {
       return;
     }
     this.expensesService.addExpense(form.value.description, Number(form.value.cost));
+    this.descriptionRef.nativeElement.focus()
+    form.resetForm();
   }
 
 }
