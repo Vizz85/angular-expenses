@@ -11,7 +11,7 @@ import { ExpensesService } from '../expenses.service';
   styleUrls: ['./expenses-list.component.scss']
 })
 export class ExpensesListComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['item', 'cost'];
+  displayedColumns: string[] = ['item', 'category', 'cost'];
   expenses: Expense[] = [];
   dataSource: MatTableDataSource<Expense>;
 

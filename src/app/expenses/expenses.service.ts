@@ -15,8 +15,8 @@ export class ExpensesService {
     return this.expensesUpdated.asObservable();
   }
 
-  addExpense(description: string, cost: number) {
-    const expense: Expense = { description, cost };
+  addExpense(description: string, category: string, cost: number) {
+    const expense: Expense = { description, category, cost };
     this.expenses.push(expense);
     this.expensesUpdated.next([...this.expenses]);
   }

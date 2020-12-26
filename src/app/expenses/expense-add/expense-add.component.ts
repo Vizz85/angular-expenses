@@ -19,7 +19,7 @@ export class ExpenseAddComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    this.expensesService.addExpense(form.value.description, Number(form.value.cost));
+    this.expensesService.addExpense(form.value.description, form.value.category, Number(form.value.cost));
     this.descriptionRef.nativeElement.focus()
     form.resetForm();
   }

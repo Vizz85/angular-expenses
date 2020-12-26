@@ -15,6 +15,18 @@
         <mat-error *ngIf="description.invalid">Enter a description</mat-error>
       </mat-form-field>
       <mat-form-field>
+        <mat-label>Category</mat-label>
+        <input
+          matInput
+          placeholder="enter a category"
+          name="category"
+          ngModel
+          required
+          #category="ngModel"
+        />
+        <mat-error *ngIf="category.invalid">Enter a category</mat-error>
+      </mat-form-field>
+      <mat-form-field>
         <mat-label>Amount</mat-label>
         <input
           matInput
